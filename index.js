@@ -38,11 +38,11 @@ function createqueue(data) {
               })
            
             doc.font('Bold');
-            doc.fontSize(15).text('โรงพยาบาลปัตตานี\nคิวที่',0,5,{align: 'center'});
+            doc.fontSize(15).text('โรงพยาบาลปัตตานี\nคิวรับยาที่',0,5,{align: 'center'});
             doc.fontSize(100).text(val.queue, 0,10, {align: 'center'});
             doc.fontSize(15).text(`วันที่ ${datethai}`,0,95,{align: 'center'});
             doc.fontSize(15).text(`HN: ${val.hn} ชื่อ-สกุล: ${val.fullname}`,0,110,{align: 'center'});
-            doc.fontSize(15).text(`แผนก: ${val.ward}`,0,125,{align: 'center'});
+            doc.fontSize(15).text(`ห้องตรวจ/คลินิก: ${val.ward}`,0,125,{align: 'center'});
 
             if(i+1<data.length)doc.addPage();
             
@@ -66,10 +66,10 @@ app.get('/printqueue', (req, res) => {
     try {
 
         createqueue(req.query.data).then((path)=>{
-        //    print(path)
-        //    .then(() => {
+           print(path)
+           .then(() => {
              res.status(200).json({message:'success'});
-        //    })
+           })
 
        });
 
