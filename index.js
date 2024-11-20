@@ -68,10 +68,10 @@ app.get('/printqueue', (req, res) => {
     try {
 
         createqueue(req.query.data).then((path)=>{
-        //    print(path)
-        //    .then(() => {
+           print(path)
+           .then(() => {
              res.status(200).json({message:'success'});
-        //    })
+           })
 
        });
 
