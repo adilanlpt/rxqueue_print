@@ -28,7 +28,7 @@ function createqueue(data) {
         // เขียนข้อความลงใน PDF
         doc.lineGap(0);
 
-        let main_dep = ['034','039','062','068','081','087','142','152','238','239','240','316','409','501'];
+        let main_dep_fasttrack = ['034','039','062','068','081','087','142','152','238','239','240','316','409','501'];
 
         data.forEach((val,i) => {
            
@@ -39,7 +39,7 @@ function createqueue(data) {
             })
             
             doc.font('Bold');
-            doc.fontSize(15).text(`โรงพยาบาลปัตตานี\nคิวรับยา${val.med_count <= 2 || main_dep.includes(val.main_dep)?'ช่อง 5':''}`,0,5,{align: 'center'});
+            doc.fontSize(15).text(`โรงพยาบาลปัตตานี\nคิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ช่อง 5':''}`,0,5,{align: 'center'});
             doc.fontSize(100).text(val.queue, 0,10, {align: 'center'});
             doc.fontSize(15).text(`วันที่ ${datethai}`,0,97,{align: 'center'});
             doc.fontSize(15).text(`HN: ${val.hn} ชื่อ-สกุล: ${val.fullname}`,0,110,{align: 'center'});
