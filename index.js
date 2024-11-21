@@ -37,14 +37,15 @@ function createqueue(data) {
                 month: 'long',
                 day: 'numeric',
             })
-            
             doc.font('Bold');
-            doc.fontSize(15).text(`โรงพยาบาลปัตตานี\nคิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ช่อง 5':''}`,0,5,{align: 'center'});
-            doc.fontSize(100).text(val.queue, 0,10, {align: 'center'});
-            doc.fontSize(15).text(`วันที่ ${datethai}`,0,97,{align: 'center'});
-            doc.fontSize(15).text(`HN: ${val.hn} ชื่อ-สกุล: ${val.fullname}`,0,110,{align: 'center'});
-            doc.fontSize(15).text(`ห้องตรวจ/คลินิก: ${val.ward}`,0,123,{align: 'center'});
-            doc.fontSize(15).text(`จำนวนยา: ${val.med_count} รายการ` ,0,135,{align: 'center'});
+            doc.fontSize(15).text(`โรงพยาบาลปัตตานี\nคิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ด่วนช่อง ':'ช่อง '}`,0,5,{align: 'center'});
+            doc.fontSize(20).text(val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'5':'6,7,8',0,35,{align: 'center'});
+            doc.fontSize(100).text(val.queue, 0,25, {align: 'center'});
+            doc.fontSize(15).text(`จำนวนยา:        รายการ` ,0,110,{align: 'center'});
+            doc.fontSize(20).text(val.med_count ,112,107);
+            doc.fontSize(15).text(`วันที่ ${datethai}`,0,125,{align: 'center'});
+            doc.fontSize(15).text(`HN: ${val.hn} ชื่อ-สกุล: ${val.fullname}`,0,140,{align: 'center'});
+            doc.fontSize(15).text(`ห้องตรวจ/คลินิก: ${val.ward}`,0,155,{align: 'center'});
 
             if(i+1<data.length)doc.addPage();
             
@@ -68,10 +69,10 @@ app.get('/printqueue', (req, res) => {
     try {
 
         createqueue(req.query.data).then((path)=>{
-           print(path)
-           .then(() => {
+        //    print(path)
+        //    .then(() => {
              res.status(200).json({message:'success'});
-           })
+        //    })
 
        });
 
