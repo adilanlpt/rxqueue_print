@@ -38,11 +38,11 @@ function createqueue(data) {
                 day: 'numeric',
             })
             doc.font('Bold');
-            doc.fontSize(15).text(`โรงพยาบาลปัตตานี\nคิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ด่วนช่อง ':'ช่อง '}`,0,5,{align: 'center'});
-            doc.fontSize(20).text(val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'5':'6,7,8',0,35,{align: 'center'});
+            doc.fontSize(15).text('โรงพยาบาลปัตตานี',0,5,{align: 'center'});
+            doc.fontSize(25).text(`คิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ด่วนช่อง 5 ':'ช่อง 6,7,8'}`,0,25,{align: 'center'});
             doc.fontSize(100).text(val.queue, 0,25, {align: 'center'});
             doc.fontSize(15).text(`จำนวนยา:        รายการ` ,0,110,{align: 'center'});
-            doc.fontSize(20).text(val.med_count ,112,107);
+            doc.fontSize(20).text(val.med_count ,105,107,{align: 'center',width:10 * 2.834645669});
             doc.fontSize(15).text(`วันที่ ${datethai}`,0,125,{align: 'center'});
             doc.fontSize(15).text(`HN: ${val.hn} ชื่อ-สกุล: ${val.fullname}`,0,140,{align: 'center'});
             doc.fontSize(15).text(`ห้องตรวจ/คลินิก: ${val.ward}`,0,155,{align: 'center'});
