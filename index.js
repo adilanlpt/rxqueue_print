@@ -28,7 +28,8 @@ function createqueue(data) {
         // เขียนข้อความลงใน PDF
         doc.lineGap(0);
 
-        let main_dep_fasttrack = ['034','039','062','068','081','087','142','152','238','239','240','316','409','501'];
+        let main_dep_fasttrack = ['034','039','055','059','062','068','081','087','142','152','162','172','235','238','239','240','316','339','340','501'];
+        let main_dep_not_fasttrack = ['074'];
 
         data.forEach((val,i) => {
            
@@ -39,7 +40,7 @@ function createqueue(data) {
             })
             doc.font('Bold');
             doc.fontSize(15).text('โรงพยาบาลปัตตานี',0,5,{align: 'center'});
-            doc.fontSize(25).text(`คิวรับยา${val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)?'ด่วนช่อง 5 ':'ช่อง 6,7,8'}`,0,25,{align: 'center'});
+            doc.fontSize(25).text(`คิวรับยา${(val.med_count <= 2 || main_dep_fasttrack.includes(val.main_dep)) && !main_dep_not_fasttrack.includes(val.main_dep)?'ด่วนช่อง 5 ':'ช่อง 6,7,8'}`,0,25,{align: 'center'});
             doc.fontSize(100).text(val.queue, 0,25, {align: 'center'});
             doc.fontSize(15).text(`จำนวนยา:        รายการ` ,0,110,{align: 'center'});
             doc.fontSize(20).text(val.med_count ,105,107,{align: 'center',width:10 * 2.834645669});
